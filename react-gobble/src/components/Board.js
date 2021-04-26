@@ -1,24 +1,35 @@
 import React from 'react';
-import Box from './Box'
+import Square from './Square';
 
-function Board({boxes, onClick }) {
+class Board extends React.Component {
+  renderSquare(i) {
+    return <Square />;
+  }
+
+  render() {
+    const status = 'Next player: X';
+
     return (
-      <div style={style}>
-        {boxes.map((box, i) => (
-          <Box key={i} letter={box} onClick={() => onClick(i)} />
-      ))}
+      <div>
+        <div className="status">{status}</div>
+        <div className="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
       </div>
     );
+  }
 }
-
-const style = {
-    border: '4px solid lightblue',
-    borderRadius: '10px',
-    width: '320px',
-    height: '320px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)'
-  };
 
 export default Board;
